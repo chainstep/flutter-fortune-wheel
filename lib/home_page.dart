@@ -16,8 +16,8 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   double _angle = 0;
   double _current = 0;
-  AnimationController _ctrl;
-  Animation _ani;
+  late AnimationController _ctrl;
+  late Animation _ani;
   List<Luck> _items = [
     Luck("apple", Colors.accents[0]),
     Luck("raspberry", Colors.accents[2]),
@@ -55,7 +55,11 @@ class _HomePageState extends State<HomePage>
               return Stack(
                 alignment: Alignment.center,
                 children: <Widget>[
-                  BoardView(items: _items, current: _current, angle: _angle),
+                  BoardView(
+                      key: new GlobalKey(),
+                      items: _items,
+                      current: _current,
+                      angle: _angle),
                   _buildGo(),
                   _buildResult(_value),
                 ],
